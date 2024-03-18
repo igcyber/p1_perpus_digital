@@ -1,3 +1,7 @@
+<?php
+include_once("conn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,27 +39,34 @@
             border-radius: 3px;
             box-sizing: border-box;
         }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 
 <body>
+
     <div class="container">
         <h2>Login Aplikasi</h2>
-        <form action="#" method="post">
+        <?php
+        if (isset($_POST['login'])) {
+            $username = $_POST['username'];
+            $password = md5($_POST['password']);
+            // echo "$username $password";
+            $data = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' AND password = '$password'");
+            $check = mysqli_num_rows($data);
+            if ($check > 0) {
+                $_SESSION['user'] = mysqli_fetch_array($data);
+                echo "<script>alert('Selamat Datang, Login Berhasil'); location.href='dashboard.php'</script>";
+            } else {
+                echo "<script>alert('Mohon Maaf Username/Password Salah')</script>";
+            }
+        }
+
+        ?>
+        <form method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login">
+            <button type="submit" name="login">Login</button>
+            <a href="register.php">Belum Punya Akun</a>
         </form>
     </div>
 </body>
