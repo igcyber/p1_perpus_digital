@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 04:27 PM
+-- Generation Time: Mar 18, 2024 at 05:47 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -89,8 +89,17 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
-  `alamat` text NOT NULL
+  `alamat` text NOT NULL,
+  `no_telp` varchar(13) NOT NULL,
+  `level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `no_telp`, `level`) VALUES
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin@gmail.com', 'Admin', 'Jl. Admin', '085389360934', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -163,7 +172,7 @@ ALTER TABLE `review_book`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
