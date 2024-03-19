@@ -67,7 +67,7 @@ if (isset($_POST['register'])) {
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit" name="register">Register</button>
-            <a href="register.php">Belum Punya Akun</a>
+            <a href="index.php">Login</a>
         </form>
     </div>
 </body>
