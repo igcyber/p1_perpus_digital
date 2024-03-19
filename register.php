@@ -5,7 +5,7 @@ if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $nama = $_POST['nama_lengkap'];
-    $level = 'peminjam';
+    $level = $_POST['level'];
 
     $insert = mysqli_query($conn, "INSERT INTO user(username,password,nama_lengkap,level) VALUES('$username','$password','$nama','$level')");
 
@@ -45,6 +45,7 @@ if (isset($_POST['register'])) {
         }
 
         input[type="text"],
+        select,
         input[type="password"],
         input[type="submit"] {
             width: 100%;
@@ -66,6 +67,10 @@ if (isset($_POST['register'])) {
             <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
+            <select name="level">
+                <option value="admin">Admin</option>
+                <option value="peminjam">Peminjam</option>
+            </select>
             <button type="submit" name="register">Register</button>
             <a href="index.php">Login</a>
         </form>
