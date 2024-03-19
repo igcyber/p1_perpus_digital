@@ -71,11 +71,11 @@ if (!isset($_SESSION['user'])) {
         }
 
         .card {
-            width: calc(33.33% - 20px);
+            width: calc(24%);
             margin-bottom: 20px;
             background-color: #007bff;
             color: #fff;
-            padding: 20px;
+            padding: 10px;
             border-radius: 5px;
             box-sizing: border-box;
         }
@@ -94,27 +94,35 @@ if (!isset($_SESSION['user'])) {
 <body>
     <div class="container">
         <h1>Aplikasi Perpustakaan Digital</h1>
+        <h4>Anda Login Sebagai : <?php echo $_SESSION['user']['level']; ?> </h4>
         <div class="navbar">
             <ul>
-                <li><a href="#">Master Buku</a></li>
-                <li><a href="#">Master Kategori</a></li>
-                <li><a href="#">Master Peminjaman</a></li>
-                <li><a href="#">Master Pengguna</a></li>
+                <?php if ($_SESSION['user']['level'] != 'peminjam') { ?>
+                    <li><a href="#">Master Buku</a></li>
+                    <li><a href="#">Master Kategori</a></li>
+                <?php } else { ?>
+                    <li><a href="#">Master Peminjaman</a></li>
+                <?php } ?>
+                <li><a href="#">Master Ulasan</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
         <div class="cards">
             <div class="card">
                 <h2>Total Buku</h2>
-                <p>100</p>
+                <p> <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM book")) ?></p>
             </div>
             <div class="card">
-                <h2>Total Buku Terpinjam</h2>
-                <p>50</p>
+                <h2>Total Kategori</h2>
+                <p><?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM category")) ?></p>
             </div>
             <div class="card">
-                <h2>Total Peminjam</h2>
-                <p>10</p>
+                <h2>Total Ulasan</h2>
+                <p><?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM review_book")) ?></p>
+            </div>
+            <div class="card">
+                <h2>Total Pengguna</h2>
+                <p><?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user")) ?></p>
             </div>
         </div>
     </div>

@@ -60,7 +60,6 @@ include_once("conn.php");
                 echo "<script>alert('Mohon Maaf Username/Password Salah')</script>";
             }
         }
-
         ?>
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required>
