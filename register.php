@@ -1,5 +1,5 @@
 <?php
-include_once("conn.php");
+include_once("inc/conn.php");
 
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
