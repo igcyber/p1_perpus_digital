@@ -49,11 +49,12 @@ include_once("inc/conn.php");
         if (isset($_POST['login'])) {
             $username = $_POST['username'];
             $password = md5($_POST['password']);
+            // echo "$username $password";
             $data = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' AND password = '$password'");
             $check = mysqli_num_rows($data);
             if ($check > 0) {
                 $_SESSION['user'] = mysqli_fetch_array($data);
-                echo "<script>alert('Selamat Datang, Login Berhasil'); location.href='/pages/dashboard.php'</script>";
+                echo "<script>alert('Selamat Datang, Login Berhasil'); location.href='pages/dashboard.php'</script>";
             } else {
                 echo "<script>alert('Mohon Maaf Username/Password Salah')</script>";
             }

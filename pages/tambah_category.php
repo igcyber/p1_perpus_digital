@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
 <form method="POST">
     <fieldset>
-        <legend>Tambah Data</legend>
+        <legend>Tambah Buku</legend>
         <label>Nama</label> <br>
         <input type="text" name="nama" requiredd>
         <button type="submit" name="submit">Simpan</button>
