@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 05:47 PM
+-- Generation Time: Mar 25, 2024 at 02:51 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -33,9 +33,18 @@ CREATE TABLE `book` (
   `judul` varchar(255) NOT NULL,
   `penulis` varchar(255) NOT NULL,
   `penerbit` varchar(255) NOT NULL,
-  `tahun_terbit` year(4) NOT NULL,
+  `tahun_terbit` varchar(4) NOT NULL,
   `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`book_id`, `kategori_id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `deskripsi`) VALUES
+(1, 2, 'Pancasila', 'Dia', 'Dia', '2020', 'Buku Ini Bercerita'),
+(2, 2, 'Pancasila', 'Dia', 'Dia', '2020', 'Buku Ini Bercerita'),
+(3, 3, 'Test', 'Test', 'Test', '2024', 'Test');
 
 -- --------------------------------------------------------
 
@@ -47,6 +56,15 @@ CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `nama`) VALUES
+(2, 'Nation'),
+(3, 'Nation Baru12'),
+(9, 'IPS');
 
 -- --------------------------------------------------------
 
@@ -87,10 +105,10 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
-  `alamat` text NOT NULL,
-  `no_telp` varchar(13) NOT NULL,
+  `alamat` text DEFAULT NULL,
+  `no_telp` varchar(13) DEFAULT NULL,
   `level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,7 +117,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `no_telp`, `level`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin@gmail.com', 'Admin', 'Jl. Admin', '085389360934', 'admin');
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin@gmail.com', 'Admin', 'Jl. Admin', '085389360934', 'admin'),
+(2, 'aji', '25d55ad283aa400af464c76d713c07ad', NULL, 'Aji Bagaskara', NULL, NULL, 'peminjam');
 
 --
 -- Indexes for dumped tables
@@ -148,13 +167,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -172,7 +191,7 @@ ALTER TABLE `review_book`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
